@@ -21,6 +21,12 @@ match(yt_be_schema, 'https://youtu.be/57Ykv1D0qEE?t=1m43s')
 The project is in early stage of development, so anything could change.
 
 
+## Installation
+```
+pip3 install git+https://github.com/MelomanCool/url-match.git#egg=url_match
+```
+
+
 ## Schema syntax
 Schema consists of four parts:
 ```
