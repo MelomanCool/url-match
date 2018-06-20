@@ -50,6 +50,8 @@ Examples:
 ### Path
 Consists of several folders separated by the "/" character. A folder can be either name of a folder, like `foo`, or a keyword, like `:bar`. Names are matched as is, while keywords are used for name extraction.
 
+The last "/" can be made optional, like so "/?".
+
 Mininal possible path consists of a single character: "/", but it's better to use "/?"
 
 Examples:  
