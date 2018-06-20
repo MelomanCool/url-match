@@ -77,7 +77,7 @@ yt_schema = make_schema('https? www.?youtube.com /watch {v=:id t=:ts}')
 match(yt_schema, 'https://www.youtube.com/watch?v=57Ykv1D0qEE&t=1m43s')
 # => {'id': '57Ykv1D0qEE', 'ts': '1m43s'}
 
-# notice that now there is no "www." in the url
+# note that now there is no "www." in the url
 match(yt_schema, 'https://youtube.com/watch?v=57Ykv1D0qEE&t=1m43s')
 # => {'id': '57Ykv1D0qEE', 'ts': '1m43s'}
 
@@ -86,7 +86,7 @@ reddit_schema = make_schema('https? www.?reddit.com /r/:subreddit/? {}')
 match(reddit_schema, 'https://www.reddit.com/r/coolgithubprojects/')
 # => {'subreddit': 'coolgithubprojects'}
 
-# notice the absence of the ending "/"
+# note the absence of the ending "/"
 match(reddit_schema, 'https://www.reddit.com/r/coolgithubprojects')
 # => {'subreddit': 'coolgithubprojects'}
 
