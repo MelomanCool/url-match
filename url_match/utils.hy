@@ -25,3 +25,8 @@
       (+ "{" (or (.group m "suffix") "") "}"))
     string-literal))
   `(.format ~string-literal ~@exprs))
+
+
+(defn merge [a b]
+  (doto (.copy a)
+        (.update b)))

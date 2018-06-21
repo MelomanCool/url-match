@@ -3,7 +3,8 @@
 (import re
         pkgutil
         [furl [furl]]
-        lark)
+        lark
+        [url-match.utils [merge]])
 
 
 (defclass Transformer [lark.Transformer]
@@ -69,6 +70,6 @@
     (if-let [path-match (re.fullmatch path (str fu.path))]
       ;; does the url have all of the required query parameters?
       (when (<= (set (.keys fu.args)) (.keys query))
-        {#** (.groupdict path-match)
-         #** (dict-comp (name var-name) (get fu.args qry-key)
-                        [[qry-key var-name] (.items query)])}))))
+        (merge (.groupdict path-match)
+               (dict-comp (name var-name) (get fu.args qry-key)
+                          [[qry-key var-name] (.items query)]))))))
