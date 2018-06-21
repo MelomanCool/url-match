@@ -58,7 +58,7 @@ Consists of several folders separated by the "/" character. A folder can be eith
 
 The last "/" can be made optional, like so "/?".
 
-Mininal possible path consists of a single character: "/", but it's better to use "/?"
+Shortest possible path consists of a single character: "/", but in general it's better to use "/?".
 
 Examples:  
 `/` will match only the path `/`.  
