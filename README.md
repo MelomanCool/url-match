@@ -77,7 +77,7 @@ Example: the pattern `{v=:id t=:ts}` with the query string `v=4YabUd9imQU&t=9m14
 ```
 
 
-# More Examples
+## More Examples
 ```python
 yt_schema = make_schema('https? www.?youtube.com /watch {v=:id t=:ts}')
 match(yt_schema, 'https://www.youtube.com/watch?v=57Ykv1D0qEE&t=1m43s')
