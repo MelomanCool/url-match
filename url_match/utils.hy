@@ -1,3 +1,17 @@
+(require [hy.contrib.walk [let]])
+
+
+(defmacro/g! if-let
+  [bindings then-form &optional else-form]
+  (let [g!form (nth bindings 0)
+        g!tst  (nth bindings 1)]
+    `(let [g!temp ~g!tst]
+       (if g!temp
+         (let [~g!form g!temp]
+           ~then-form)
+         ~else-form))))
+
+
 (deftag f [string-literal]
   (import re)
   (setv exprs [])

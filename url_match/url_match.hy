@@ -1,5 +1,5 @@
 (require [hy.contrib.walk [let]]
-         [url-match.utils [f]])
+         [url-match.utils [f if-let]])
 (import re
         pkgutil
         [furl [furl]]
@@ -59,12 +59,16 @@
 
 
 (defn match [schema url]
-  (setv fu (furl url))
+  (setv fu (furl url)
 
-  (when (and (re.fullmatch (get schema "proto" ) fu.scheme)
-             (re.fullmatch (get schema "domain") fu.host))
-    
-    {#** (.groupdict (re.fullmatch (get schema "path")
-                                   (str fu.path)))
-     #** (dict-comp (name var-name) (get fu.args qry-key)
-                    [[qry-key var-name] (.items (get schema "query"))])}))
+        [proto domain path query]
+        (map schema.get ["proto" "domain" "path" "query"]))
+
+  (when (and (re.fullmatch proto fu.scheme)
+             (re.fullmatch domain fu.host))
+    (if-let [path-match (re.fullmatch path (str fu.path))]
+      ;; does the url have all of the required query parameters?
+      (when (<= (set (.keys fu.args)) (.keys query))
+        {#** (.groupdict path-match)
+         #** (dict-comp (name var-name) (get fu.args qry-key)
+                        [[qry-key var-name] (.items query)])}))))
