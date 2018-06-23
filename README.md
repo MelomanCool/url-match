@@ -93,7 +93,7 @@ reddit_schema = make_schema('https? www.?reddit.com /r/:subreddit/? {}')
 match(reddit_schema, 'https://www.reddit.com/r/coolgithubprojects/')
 # => {'subreddit': 'coolgithubprojects'}
 
-# note the absence of the ending "/"
+# note the absence of the last "/"
 match(reddit_schema, 'https://www.reddit.com/r/coolgithubprojects')
 # => {'subreddit': 'coolgithubprojects'}
 
