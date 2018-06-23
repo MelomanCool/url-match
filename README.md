@@ -1,7 +1,7 @@
 # [Alpha] Url Match
 Easily extract interesting bits of information from URLs.
 
-Inspired by Clojure's [Compojure](https://github.com/weavejester/compojure) — awesome routing library.
+Inspired by Clojure's [Compojure](https://github.com/weavejester/compojure) — an awesome routing library.
 
 Note: this library currently does not handle non-matching URLs. It only extracts parts from the matching ones.
 
@@ -84,20 +84,20 @@ yt_schema = make_schema('https? www.?youtube.com /watch {v=:id t=:ts}')
 match(yt_schema, 'https://www.youtube.com/watch?v=57Ykv1D0qEE&t=1m43s')
 # => {'id': '57Ykv1D0qEE', 'ts': '1m43s'}
 
-# note that now there is no "www." in the url
+# note that now there is no "www." in the URL
 match(yt_schema, 'https://youtube.com/watch?v=57Ykv1D0qEE&t=1m43s')
 # => {'id': '57Ykv1D0qEE', 'ts': '1m43s'}
-
-
+```
+```python
 reddit_schema = make_schema('https? www.?reddit.com /r/:subreddit/? {}')
 match(reddit_schema, 'https://www.reddit.com/r/coolgithubprojects/')
 # => {'subreddit': 'coolgithubprojects'}
 
-# note the absence of the last "/"
+# note that the last "/" is absent
 match(reddit_schema, 'https://www.reddit.com/r/coolgithubprojects')
 # => {'subreddit': 'coolgithubprojects'}
-
-
+```
+```python
 reddit_thread_schema = make_schema('https? www.?reddit.com /r/:subreddit/comments/:thread_id/:thread_name/? {}') 
 match(reddit_thread_schema, 
       'https://www.reddit.com/r/photoshopbattles/comments/8sgj7n/psbattle_english_football_team_riding_unicorns_in/')
@@ -106,6 +106,6 @@ match(reddit_thread_schema,
 
 
 ## Why?
-The library was created because I needed to extract parts of path and some query parameters from a YouTube url. Parsing whole URLs with regular expression was not an option, because query parameters can be listed in many different orders. [furl](https://github.com/gruns/furl) solves this problem, but I wanted something more declarative and specific.
+The library was created because I needed to extract parts of path and some query parameters from a YouTube URL. Parsing whole URLs with regular expression was not an option, because query parameters can be listed in many orders. [furl](https://github.com/gruns/furl) solves this problem, but I wanted something more declarative and specific.
 
-In fact, current implementation uses both regular expessions and furl, applying patterns to different parts of a furl object. And the schema is parsed by [Lark](https://github.com/lark-parser/lark).
+In fact, current implementation uses both regular expressions and furl, applying patterns to different parts of a furl object. And the schema is parsed by [Lark](https://github.com/lark-parser/lark).
