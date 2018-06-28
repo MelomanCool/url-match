@@ -3,8 +3,6 @@ Easily extract interesting bits of information from URLs.
 
 Inspired by Clojure's [Compojure](https://github.com/weavejester/compojure) — an awesome routing library.
 
-Note: this library currently does not handle non-matching URLs. It only extracts parts from the matching ones.
-
 
 ## Example usage
 
